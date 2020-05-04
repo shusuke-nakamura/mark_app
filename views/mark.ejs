@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <h1><%= title %></h1>
+  <h2><%= head %></h2>
+  <form action="/mark/<%= id %>" method="post">
+    <table>
+      <tr>
+        <th>SOURCE</th>
+      </tr>
+      <tr>
+        <td>
+          <textarea name="source" id="source" cols="60" rows="5"><%= source %></textarea>
+        </td>
+      </tr>
+      <tr>
+        <th><input type="submit" value="Update"></th>
+      </tr>
+    </table>
+  </form>
+  <div class="mark_area">
+    <%- content %>
+    <p><%= footer %></p>
+  </div>
+  <p><a href="/">&lt;&lt; Topへ戻る</a></p>
+</body>
+</html>

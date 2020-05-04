@@ -6,6 +6,20 @@
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <p>Hi, <span class="login_name"><%= login.name %></span>!<br>Welcome to <%= title %></p>
+    <form action="/" method="post">
+      <input type="text" name="find" id="find" size="40" value="<%= form.find %>">
+      <input type="submit" value="検索">
+    </form>
+    <hr>
+    <p><%= message %></p>
+    <ul>
+      <% for(var i in content) { %>
+        <% if (content[i].attributes.user_id != login.id) { continue; } %>
+        <li><a href="/mark/<%= content[i].id %>"><%= content[i].attributes.title %></a></li>
+      <% } %>
+    </ul>
+    <p> </p>
+    <p><a href="/add">※データを登録</a></p>
   </body>
 </html>
