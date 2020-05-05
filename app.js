@@ -3,9 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var loginRouter = require('./routes/login');
+var addRouter   = require('./routes/add');
+var markRouter = require('./routes/mark');
 
 var app = express();
 
@@ -19,6 +23,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var session_opt = {
+  secret: 'keybord cat',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 60 * 60 * 1000 }
+};
+
+app.use(session(session_opt));
+
+app.use('/login', loginRouter);
+app.use('/add', addRouter);
+app.use('/mark', markRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
